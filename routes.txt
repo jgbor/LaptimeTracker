@@ -1,0 +1,73 @@
+Személyek és köridők
+-index.html: login
+-register.html: regisztráció
+-forpass/forpass2.html: elfelejtett jelszó biztonsági kérdéssel
+-profile.html: táblázat(edit/delete), új köridő gomb
+-add.html: új elem hozzáadása
+-edit.html: módosítás
+
+Routing
+
+middlewares/render/
+    renderMW.js
+
+middlewares/auth/
+    checkLoginMW.js
+    checkAnswerMW.js
+    authMW.js
+
+middlewares/user/
+    saveUserMW.js
+    checkUserMW.js
+    getUserMW.js
+
+middlewares/laptime/
+    getLaptimesMW.js
+    getLaptimeMW.js
+    saveLaptimeMW.js
+    delLaptimeMW.js
+
+GET,POST /login			-jelszó ellenőrzés, ha ok, laptimes/:userid, különben vissza
+	checkLoginMW
+	renderMW(index.html)
+
+GET,POST /register
+	saveUserMW
+	renderMW(register.html)
+
+GET,POST /forgotpassw
+	checkUserMW
+	renderMW(forpass.html)
+
+GET,POST /forgotpassw/:userid
+	getUserMW
+	checkAnswerMW
+	showPassMW
+	renderMW(forpass2.html)
+
+
+GET /laptimes/:userid
+	authMW
+	getUserMW
+	getLaptimesMW
+	renderMW(profile.html)
+
+GET,POST /laptimes/:userid/edit/:laptimeid
+	authMW
+	getLaptimeMW(paraméterből)
+	saveLaptimeMW
+	renderMW(edit.html)
+		-ha volt valami érték beküldve, akkor form elemek azzal feltöltve
+		-ha nem, akkor üresek
+
+GET,POST /laptimes/:userid/newtime
+	authMW
+	saveLaptimeMW
+	renderMW(add.html)
+		-ha volt valami érték beküldve, akkor form elemek azzal feltöltve
+		-ha nem, akkor üresek
+
+GET /laptimes/:userid/del/:laptimeid
+	authMW
+	getLaptimeMW
+	delLaptimeMW

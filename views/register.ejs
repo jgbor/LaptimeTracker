@@ -1,0 +1,68 @@
+<%- include("header",{title: "Register" })-%>
+<div class="container">
+    <h1 class="text-center">
+        Creating account
+    </h1>
+    <form method="POST">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="mb-3">
+                    <label for="nameID" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="nameID" name="name" placeholder="name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="mb-3">
+                    <label for="usernameID" class="form-label">User</label>
+                    <input type="text" class="form-control" id="usernameID" name="username" placeholder="username">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="mb-3">
+                    <label for="InputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="InputPassword1" name="password" placeholder="password">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="mb-3">
+                    <label for="InputPassword2" class="form-label">Password again</label>
+                    <input type="password" class="form-control" id="InputPassword2" name="passwordagain" placeholder="password again">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="mb-3">
+                    Security question
+                    <select class="form-select mb-3" name="question">
+                        <option value="1">What was your first pet's name?</option>
+                        <option value="2">What was your childhood best friend's name?</option>
+                        <option value="3">When did you get drunk for the first time?</option>
+                    </select>
+                    Answer
+                    <input type="text" class="form-control" id="answerID" name="answer" placeholder="answer">
+                </div>
+                <% if (typeof error !== "undefined") { %>
+                    <div class="alert alert-danger"><%= error %></div>
+                <% } %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 offset-3">
+                <a href="/">
+                    <button type="button" class="btn btn-outline-danger btn-lg">Back</button>
+                </a>
+            </div>
+            <div class="col-2 offset-2 text-end">
+                <input type="submit" class="btn-danger btn-lg" value="Register"/>
+            </div>
+        </div>
+    </form>
+</div>
+<%- include("footer") -%>

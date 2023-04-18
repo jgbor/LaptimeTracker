@@ -1,0 +1,33 @@
+<%- include("header",{title: "Forgotten password" })-%>
+<div class="container">
+    <h1 class="text-center">
+        Forgotten password
+    </h1>
+    <form method="POST">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="mb-3">
+                    Security question:
+                    <% if (user.question===1) { %> What was your first pet's name?
+                    <% } else if(user.question===2) { %> What was your childhood best friend's name?
+                    <% } else {%> When did you get drunk for the first time? <% } %>
+                    <input type="text" class="form-control" id="answerID" name="answer" placeholder="answer">
+                    <% if (typeof error !== "undefined") { %>
+                        <div class="alert alert-danger"><%= error %></div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1 offset-3">
+                <a href="/">
+                    <button type="button" class="btn btn-outline-danger btn-lg">Back</button>
+                </a>
+            </div>
+            <div class="col-2 offset-3 text-end">
+                <input type="submit" class="btn-danger btn-lg" value="Get password"/>
+            </div>
+        </div>
+    </form>
+</div>
+<%- include("footer") -%>
